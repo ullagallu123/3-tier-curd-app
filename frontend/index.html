@@ -110,14 +110,11 @@
     async function fetchEntries() {
       showLoading();
       try {
-        console.log('Fetching entries...');
         const response = await fetch(API_URL);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const entries = await response.json();
-        console.log('Fetched entries:', entries);
-
         const tbody = document.getElementById('entries');
         tbody.innerHTML = '';
         entries.forEach(entry => {
@@ -154,10 +151,10 @@
 
         // Fetch updated entries after deletion
         fetchEntries();
-        showMessage('Record deleted successfully!');
+        showMessage('Record deleted successfully!', false);  // false for red color (error)
       } catch (error) {
         console.error('Error deleting entry:', error);
-        showMessage('Failed to delete record. Please try again.', false);
+        showMessage('Failed to delete record. Please try again.', false);  // false for red color (error)
       }
     }
 
