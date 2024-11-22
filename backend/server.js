@@ -13,7 +13,13 @@ app.use(bodyParser.json());
 
 // Health Check Route
 app.get('/health', (req, res) => {
-  res.status(200).send('Server is healthy');
+  res.status(200).send(
+    <html>
+      <body style="font-family: Arial, sans-serif; text-align: center; margin-top: 20px;">
+        <h1 style="color: green;">Server is healthy</h1>
+      </body>
+    </html>
+  );
 });
 
 // Routes
