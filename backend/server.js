@@ -5,7 +5,7 @@ const db = require('./db-config');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const HOST = process.env.HOST || 'localhost';
+const HOST = process.env.HOST || '0.0.0.0';
 
 // Middleware
 app.use(cors());
@@ -41,5 +41,5 @@ app.post('/api/entries', (req, res) => {
 
 // Start server
 app.listen(PORT, HOST, () => {
-  console.log(`\x1b[32mServer is running on port ${PORT}\x1b[0m`);
+  console.log(`Server is running on port \x1b[32m${PORT}\x1b[0m`);
 });
