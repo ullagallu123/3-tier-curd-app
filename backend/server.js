@@ -11,12 +11,12 @@ const HOST = process.env.HOST || '0.0.0.0';
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(cors({ origin: '*' }));
-// const cors = require('cors');
-// app.use(cors({
-//   origin: 'http://localhost:3000',  // Allow requests only from this URL
-//   methods: ['GET', 'POST']         // Allow GET and POST methods
-// }));
+// app.use(cors({ origin: '*' }));
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:3000',  // Allow requests only from this URL
+  methods: ['GET', 'POST']         // Allow GET and POST methods
+}));
 
 
 // Health Check Route
