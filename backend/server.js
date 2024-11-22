@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // app.use(cors({ origin: '*' }));
 app.use(cors({
-  origin: 'http://expense-s3-cors.s3-website.ap-south-1.amazonaws.com/',  // Allow requests only from this URL
+  origin: '*',  // Allow requests only from this URL
   methods: ['GET', 'POST']         // Allow GET and POST methods
 }));
 
