@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 // app.use(cors({ origin: '*' }));
 const cors = require('cors');
 app.use(cors({
-  origin: 'http://localhost:3000',  // Allow requests only from this URL
+  origin: 'http://expense-s3-cors.s3-website.ap-south-1.amazonaws.com/',  // Allow requests only from this URL
   methods: ['GET', 'POST']         // Allow GET and POST methods
 }));
 
