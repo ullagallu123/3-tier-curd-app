@@ -63,6 +63,24 @@ app.post('/api/entries', (req, res) => {
   });
 });
 
+// Delete Entry by ID
+app.delete('/api/entries/:id', (req, res) => {
+  const entryId = req.params.id;
+
+  const query = 'DELETE FROM entries WHERE id = ?';
+  db.query(query, [entryId], (err, result) => {
+    if (err) {
+      console.error('Database Delete Error:', err);
+      return res.status(500).send({ error: 'Failed to delete entry' });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).send({ error: 'Entry not found' });
+    }
+    console.log('Deleted entry with ID:', entryId);
+    res.status(200).send({ message: 'Entry deleted successfully' });
+  });
+});
+
 // Start Server
 app.listen(PORT, HOST, () => {
   console.log(`Server is running on port \x1b[32m${PORT}\x1b[0m`);
