@@ -40,6 +40,31 @@ app.post('/api/entries', (req, res) => {
   });
 });
 
+// Get Entries with optional filters
+app.get('/api/entries', (req, res) => {
+  const { amount, description } = req.query;  // Retrieve query parameters
+
+  let query = 'SELECT * FROM entries WHERE 1=1'; // Default query
+
+  const params = [];
+
+  if (amount) {
+    query += ' AND amount = ?';
+    params.push(amount);
+  }
+
+  if (description) {
+    query += ' AND description LIKE ?';
+    params.push(`%${description}%`); // Using LIKE for partial matches
+  }
+
+  db.query(query, params, (err, results) => {
+    if (err) return res.status(500).send(err);
+    res.json(results);
+  });
+});
+
+
 // Start server
 app.listen(PORT, HOST, () => {
   console.log(`Server is running on port \x1b[32m${PORT}\x1b[0m`);
