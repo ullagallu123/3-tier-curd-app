@@ -19,7 +19,7 @@ docker run --rm -itd --name mysql \
 docker run --rm -itd --name backend \
  -e DB_HOST=mysql \
  -e DB_USER=crud \
- -e DB_PWD=CrudApp@1 \
- -e DB_DATABASE=crud_app \
+ -e DB_PASSWORD=CrudApp@1 \
+ -e DB_NAME=crud_app \
  --network crud backend:v1
 ```
