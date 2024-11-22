@@ -11,6 +11,13 @@ const HOST = process.env.HOST || '0.0.0.0';
 app.use(cors());
 app.use(bodyParser.json());
 
+// const cors = require('cors');
+// app.use(cors({
+//   origin: 'http://localhost:3000',  // Allow requests only from this URL
+//   methods: ['GET', 'POST']         // Allow GET and POST methods
+// }));
+
+
 // Health Check Route
 app.get('/health', (req, res) => {
   res.status(200).send(`
@@ -39,31 +46,6 @@ app.post('/api/entries', (req, res) => {
     res.status(201).send({ id: result.insertId, amount, description });
   });
 });
-
-// Get Entries with optional filters
-app.get('/api/entries', (req, res) => {
-  const { amount, description } = req.query;  // Retrieve query parameters
-
-  let query = 'SELECT * FROM entries WHERE 1=1'; // Default query
-
-  const params = [];
-
-  if (amount) {
-    query += ' AND amount = ?';
-    params.push(amount);
-  }
-
-  if (description) {
-    query += ' AND description LIKE ?';
-    params.push(`%${description}%`); // Using LIKE for partial matches
-  }
-
-  db.query(query, params, (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
-
 
 // Start server
 app.listen(PORT, HOST, () => {

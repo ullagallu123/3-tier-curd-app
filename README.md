@@ -28,3 +28,7 @@ docker run --rm -itd --name backend \
   --network crud \
   backend:v1
 ```
+
+```bash
+docker run --rm -itd --name frontend -p 80:80 --network crud frontend:v1
+```
