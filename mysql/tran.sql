@@ -8,5 +8,5 @@ CREATE TABLE entries (
 );
 
 CREATE USER IF NOT EXISTS 'crud'@'%' IDENTIFIED BY 'CrudApp@1';
-GRANT ALL ON transactions.* TO 'crud'@'%';
+GRANT ALL ON crud_app.* TO 'crud'@'%';
 FLUSH PRIVILEGES;
