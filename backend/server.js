@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const chalk = require('chalk');
 const db = require('./db-config');
 
 const app = express();
@@ -42,5 +41,5 @@ app.post('/api/entries', (req, res) => {
 
 // Start server
 app.listen(PORT, HOST, () => {
-  console.log(chalk.green(`Server is running on port ${PORT}`));
+  console.log(`\x1b[32mServer is running on port ${PORT}\x1b[0m`);
 });
