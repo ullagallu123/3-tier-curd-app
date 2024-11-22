@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // CORS Configuration
 app.use(cors({
   origin: 'http://expense-s3-cors.s3-website.ap-south-1.amazonaws.com', // Replace with your S3 URL
-  methods: ['GET', 'POST', 'OPTIONS'], // Allow necessary methods
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'], // Allow necessary methods
   allowedHeaders: ['Content-Type'], // Specify allowed headers
 }));
 
