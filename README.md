@@ -12,5 +12,5 @@ docker run --rm -itd --name mysql \
  -e MYSQL_USER=crud \
  -e MYSQL_PASSWORD=CrudApp@1 \
  -e MYSQL_DATABASE=crud_app \
- --network expense mysql:v1
+ --network crud mysql:v1
 ```
