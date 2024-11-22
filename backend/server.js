@@ -1,22 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('./db-config');
+const db = require('./db-config'); // Ensure this points to your actual database config
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || '0.0.0.0';
 
 // Middleware
-app.use(cors());
 app.use(bodyParser.json());
 
-// app.use(cors({ origin: '*' }));
+// CORS Configuration
 app.use(cors({
-  origin: '*',  // Allow requests only from this URL
-  methods: ['GET', 'POST']         // Allow GET and POST methods
+  origin: 'http://expense-s3-cors.s3-website.ap-south-1.amazonaws.com', // Replace with your S3 URL
+  methods: ['GET', 'POST', 'OPTIONS'], // Allow necessary methods
+  allowedHeaders: ['Content-Type'], // Specify allowed headers
 }));
 
+// Preflight Request Handling
+app.options('/api/entries', cors());
 
 // Health Check Route
 app.get('/health', (req, res) => {
@@ -29,25 +31,39 @@ app.get('/health', (req, res) => {
   `);
 });
 
-
-// Routes
+// Fetch All Entries
 app.get('/api/entries', (req, res) => {
   db.query('SELECT * FROM entries', (err, results) => {
-    if (err) return res.status(500).send(err);
+    if (err) {
+      console.error('Database Error:', err);
+      return res.status(500).send({ error: 'Failed to fetch entries' });
+    }
+    console.log('Fetched entries:', results);
     res.json(results);
   });
 });
 
+// Add New Entry
 app.post('/api/entries', (req, res) => {
   const { amount, description } = req.body;
+
+  // Validate input
+  if (!amount || !description) {
+    return res.status(400).send({ error: 'Amount and description are required' });
+  }
+
   const query = 'INSERT INTO entries (amount, description) VALUES (?, ?)';
   db.query(query, [amount, description], (err, result) => {
-    if (err) return res.status(500).send(err);
+    if (err) {
+      console.error('Database Insert Error:', err);
+      return res.status(500).send({ error: 'Failed to insert entry' });
+    }
+    console.log('Inserted entry with ID:', result.insertId);
     res.status(201).send({ id: result.insertId, amount, description });
   });
 });
 
-// Start server
+// Start Server
 app.listen(PORT, HOST, () => {
   console.log(`Server is running on port \x1b[32m${PORT}\x1b[0m`);
 });
