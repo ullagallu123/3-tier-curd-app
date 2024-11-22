@@ -11,6 +11,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(cors({ origin: '*' }));
 // const cors = require('cors');
 // app.use(cors({
 //   origin: 'http://localhost:3000',  // Allow requests only from this URL
