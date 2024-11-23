@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-function EntryForm({ onAddEntry }) {
+function EntryForm({ addEntry }) {
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (amount && description) {
-      await onAddEntry({ amount, description });
+      addEntry(amount, description);
       setAmount('');
       setDescription('');
     }
