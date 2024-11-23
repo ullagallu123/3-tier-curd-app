@@ -9,7 +9,7 @@ docker run --rm -d --name debug --network crud siva9666/debug-utility:v1
 ```
 
 ```bash
-docker run --rm -dit --name mysql \
+docker run  -dit --name mysql \
   -e MYSQL_ROOT_PASSWORD=CrudApp@1 \
   -e MYSQL_USER=crud \
   -e MYSQL_PASSWORD=CrudApp@1 \
@@ -21,7 +21,7 @@ docker run --rm -dit --name mysql \
 ```
 
 ```bash
-docker run --rm -d --name backend \
+docker run  -d --name backend \
   -e DB_HOST=mysql \
   -e DB_USER=crud \
   -e DB_PASSWORD=CrudApp@1 \
