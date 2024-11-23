@@ -5,11 +5,11 @@
 docker network create crud
 ```
 ```bash
-docker run --rm -dit --name debug --network crud siva9666/debug-utility:v1
+docker run --rm -d --name debug --network crud siva9666/debug-utility:v1
 ```
 
 ```bash
-docker run --rm -itd --name mysql \
+docker run --rm -d --name mysql \
   -e MYSQL_ROOT_PASSWORD=CrudApp@1 \
   -e MYSQL_USER=crud \
   -e MYSQL_PASSWORD=CrudApp@1 \
@@ -19,7 +19,7 @@ docker run --rm -itd --name mysql \
 ```
 
 ```bash
-docker run --rm -itd --name backend \
+docker run --rm -d --name backend \
   -e DB_HOST=mysql \
   -e DB_USER=crud \
   -e DB_PASSWORD=CrudApp@1 \
@@ -30,9 +30,9 @@ docker run --rm -itd --name backend \
 ```
 
 ```bash
-docker run --rm -itd --name frontend -p 80:80 --network crud frontend:v1
+docker run --rm -d --name frontend -p 80:80 --network crud frontend:v1
 ```
 
 ```bash
-docker run --rm --itd --name react -p 3000:80 --network crud react:v1
+docker run --rm -d --name react -p 3000:80 --network crud react:v1
 ```
