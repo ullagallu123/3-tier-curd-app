@@ -5,6 +5,7 @@ compose_files=(
   "mysql-build.yml"
   "backend-build.yml"
   "frontend-build.yml"
+  "react-build.yml"
 )
 
 # Display options
