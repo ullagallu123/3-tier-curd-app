@@ -48,16 +48,22 @@ const EntryList = () => {
           </tr>
         </thead>
         <tbody>
-          {entries.map((entry) => (
-            <tr key={entry.id}>
-              <td>{entry.id}</td>
-              <td>{entry.amount}</td>
-              <td>{entry.description}</td>
-              <td>
-                <button onClick={() => handleDelete(entry.id)}>Delete</button>
-              </td>
+          {entries.length === 0 ? (
+            <tr>
+              <td colSpan="4">No entries available</td>
             </tr>
-          ))}
+          ) : (
+            entries.map((entry) => (
+              <tr key={entry.id}>
+                <td>{entry.id}</td>
+                <td>{entry.amount}</td>
+                <td>{entry.description}</td>
+                <td>
+                  <button onClick={() => handleDelete(entry.id)}>Delete</button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

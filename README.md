@@ -14,6 +14,7 @@ docker run --rm -d --name mysql \
   -e MYSQL_USER=crud \
   -e MYSQL_PASSWORD=CrudApp@1 \
   -e MYSQL_DATABASE=crud_app \
+  -p 3306:3306 \
   --network crud \
   mysql:v1
 ```
