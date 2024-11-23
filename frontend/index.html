@@ -32,21 +32,20 @@
     }
     .container {
       display: flex;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: auto;
+      justify-content: center;
+      flex-grow: 1;
       padding: 20px;
+      position: relative;
     }
-    .form-container,
-    .entries-container {
-      width: 48%;
+    .form-container {
+      position: absolute;
+      top: 80px;
+      right: 20px;
       background-color: #1f4068;
       border-radius: 8px;
       box-shadow: 0px 0px 10px #000000;
       padding: 20px;
-    }
-    .form-container {
-      margin-right: 2%;
+      width: 300px;
     }
     form label {
       font-size: 18px;
@@ -88,6 +87,14 @@
       margin-top: 20px;
       text-align: center;
     }
+    .entries-container {
+      width: 100%;
+      max-width: 1200px;
+      background-color: #1f4068;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px #000000;
+      padding: 20px;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -95,6 +102,7 @@
       background-color: #162447;
       border-radius: 8px;
       overflow: hidden;
+      table-layout: auto;
     }
     th, td {
       border: 1px solid #1b1b2f;
