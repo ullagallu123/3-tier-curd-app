@@ -32,3 +32,7 @@ docker run --rm -itd --name backend \
 ```bash
 docker run --rm -itd --name frontend -p 80:80 --network crud frontend:v1
 ```
+
+```bash
+docker run --rm --itd --name react -p 3000:80 --network crud react:v1
+```

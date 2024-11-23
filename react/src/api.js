@@ -1,4 +1,4 @@
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api/entries';
+const API_URL = process.env.REACT_APP_API_URL || 'http://docker.ullagallubuffellomilk.store:8080/api/entries';
 
 export { API_URL };
 
