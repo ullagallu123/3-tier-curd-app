@@ -35,5 +35,5 @@ docker run --rm -d --name frontend -p 80:80 --network crud frontend:v1
 ```
 
 ```bash
-docker run --rm -d --name react -p 80:3000 --network crud react:v1
+docker run --rm -d --name react -p 3000:3000 --network crud react:v1
 ```
