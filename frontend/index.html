@@ -91,11 +91,18 @@
       box-shadow: 0px 0px 10px #000000;
       padding: 20px;
       margin-left: 20px; /* Add space between form and entries */
+      max-width: 1000px; /* Prevent the entries section from expanding beyond a certain width */
+      height: 500px; /* Set a fixed height for the entries container */
+      overflow: hidden; /* Prevent content from overflowing */
+    }
+    .table-wrapper {
+      height: 400px; /* Fixed height for the table area */
+      overflow-y: auto; /* Enable vertical scrolling */
+      margin-top: 20px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
       background-color: #162447;
       border-radius: 8px;
       overflow: hidden;
@@ -158,17 +165,19 @@
     <div class="entries-container">
       <h2>Entries</h2>
       <div id="loading" class="loading" style="display:none;">Loading...</div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="entries"></tbody>
-      </table>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Amount</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="entries"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
