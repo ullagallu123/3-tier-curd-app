@@ -7,62 +7,132 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #1a1a2e;
+      color: #ffffff;
+    }
+    header {
+      background-color: #162447;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      font-size: 36px;
+      font-weight: bold;
+    }
+    footer {
+      background-color: #162447;
+      padding: 15px;
+      text-align: center;
+      margin-top: auto;
+      font-size: 16px;
+      color: #cccccc;
     }
     .container {
       max-width: 600px;
       margin: auto;
+      padding: 20px;
+      background-color: #1f4068;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px #000000;
+    }
+    form label {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 12px;
+      display: block;
+    }
+    input {
+      margin: 12px 0;
+      padding: 14px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #162447;
+      border-radius: 4px;
+      background-color: #1b1b2f;
+      color: #ffffff;
+      box-sizing: border-box;
+    }
+    input:focus {
+      border-color: #1f78ff;
+      outline: none;
+    }
+    button {
+      padding: 14px;
+      font-size: 18px;
+      width: 100%;
+      background-color: #1f78ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    button:hover {
+      background-color: #145fc4;
+    }
+    h2 {
+      font-size: 24px;
+      margin-top: 20px;
+      text-align: center;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
+      background-color: #162447;
+      border-radius: 8px;
+      overflow: hidden;
     }
     th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
+      border: 1px solid #1b1b2f;
+      padding: 12px;
+      font-size: 16px;
       text-align: left;
+      color: #ffffff;
     }
     th {
-      background-color: #f4f4f4;
-    }
-    input {
-      margin: 5px 0;
-      padding: 8px;
-      width: calc(100% - 18px);
-    }
-    button {
-      padding: 10px 15px;
-      margin: 5px 0;
-      cursor: pointer;
+      background-color: #1f78ff;
+      color: white;
+      font-weight: bold;
     }
     .loading {
-      color: #28a745;
+      color: #1f78ff;
+      font-size: 18px;
     }
     .message {
-      margin-top: 10px;
-      padding: 10px;
+      margin-top: 12px;
+      padding: 14px;
       border: 1px solid;
       display: none;
+      font-size: 16px;
+      border-radius: 4px;
     }
     .success {
       border-color: #28a745;
       color: #28a745;
+      background-color: #1a2a1e;
     }
     .error {
       border-color: #dc3545;
       color: #dc3545;
+      background-color: #2a1a1a;
     }
   </style>
 </head>
 <body>
+  <header>
+    CRUD Application
+  </header>
+
   <div class="container">
-    <h1>CRUD Application</h1>
     <form id="entryForm">
-      <label for="amount">Amount:</label><br>
-      <input type="number" id="amount" required><br>
-      <label for="desc">Description:</label><br>
-      <input type="text" id="desc" required><br>
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" required>
+      <label for="desc">Description:</label>
+      <input type="text" id="desc" required>
       <button type="submit">Add Entry</button>
     </form>
 
@@ -83,20 +153,21 @@
     </table>
   </div>
 
+  <footer>
+    &copy; 2024 CRUD App. All rights reserved.
+  </footer>
+
   <script>
     const API_URL = 'http://docker.ullagallubuffellomilk.store:8080/api/entries';
 
-    // Show loading message
     function showLoading() {
       document.getElementById('loading').style.display = 'block';
     }
 
-    // Hide loading message
     function hideLoading() {
       document.getElementById('loading').style.display = 'none';
     }
 
-    // Show confirmation message
     function showMessage(message, isSuccess = true) {
       const messageDiv = document.getElementById('message');
       messageDiv.style.display = 'block';
@@ -149,12 +220,11 @@
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        // Fetch updated entries after deletion
         fetchEntries();
-        showMessage('Record deleted successfully!', false);  // false for red color (error)
+        showMessage('Record deleted successfully!');
       } catch (error) {
         console.error('Error deleting entry:', error);
-        showMessage('Failed to delete record. Please try again.', false);  // false for red color (error)
+        showMessage('Failed to delete record. Please try again.', false);
       }
     }
 
@@ -183,7 +253,6 @@
       }
     });
 
-    // Initial fetch on page load
     fetchEntries();
   </script>
 </body>
