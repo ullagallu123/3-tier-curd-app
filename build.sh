@@ -6,6 +6,7 @@ compose_files=(
   "backend-build.yml"
   "frontend-build.yml"
   "react-build.yml"
+  "react-app-build.yml"
 )
 
 # Check if files exist
