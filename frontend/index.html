@@ -260,7 +260,7 @@
         }
 
         fetchEntries();
-        showMessage('Record deleted successfully!');
+        showMessage('Record deleted successfully!', false);
       } catch (error) {
         console.error('Error deleting entry:', error);
         showMessage('Failed to delete record. Please try again.', false);
