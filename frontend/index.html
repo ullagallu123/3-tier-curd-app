@@ -33,6 +33,7 @@
     .container {
       display: flex;
       justify-content: space-between;
+      align-items: stretch; /* Ensure both columns stretch to the same height */
       flex-grow: 1;
       padding: 20px;
     }
@@ -43,6 +44,9 @@
       padding: 20px;
       width: 300px;
       flex-shrink: 0; /* Prevent shrinking */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Space out the form elements */
     }
     form label {
       font-size: 18px;
@@ -92,11 +96,11 @@
       padding: 20px;
       margin-left: 20px; /* Add space between form and entries */
       max-width: 1000px; /* Prevent the entries section from expanding beyond a certain width */
-      height: 500px; /* Set a fixed height for the entries container */
-      overflow: hidden; /* Prevent content from overflowing */
+      display: flex;
+      flex-direction: column;
     }
     .table-wrapper {
-      height: 400px; /* Fixed height for the table area */
+      flex-grow: 1; /* Allow table wrapper to take remaining height */
       overflow-y: auto; /* Enable vertical scrolling */
       margin-top: 20px;
     }
