@@ -5,7 +5,9 @@ import Footer from './components/Footer';
 import EntryForm from './components/EntryForm';
 import EntryList from './components/EntryList';
 
-const API_URL = 'http://docker.ullagallubuffellomilk.store:8080/api/entries';
+const BASE_URL = "http://docker.ullagallubuffellomilk.store:8080";
+const ENDPOINT_PATH = "/api/entries";
+const API_URL = `${BASE_URL}${ENDPOINT_PATH}`;
 
 function App() {
   const [entries, setEntries] = useState([]);
